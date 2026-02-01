@@ -71,6 +71,14 @@
 				if(_login != "") {
 					if(_password != "") {
 						if(_password == _passwordCopy) {
+							var captcha = grecaptcha.getResponse();
+							if(captcha.length) {
+								let Data = new FormData();
+								Data.append('g-recaptcha-response', captcha);
+			
+								Ajax("url", Data, SignIn);
+							}
+
 							loading.style.display = "block";
 							button.className = "button_diactive";
 							
